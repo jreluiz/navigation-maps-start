@@ -9,6 +9,15 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <!-- END OPTIONAL PERMISSIONS -->
 
+  <!-- Added permissions -->
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+  <!-- Optional permissions -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+  <!-- END OPTIONAL PERMISSIONS -->
   <queries>
     <!-- Support checking for http(s) links via the Linking API -->
     <intent>
@@ -26,5 +35,6 @@
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>
+    <meta-data android:name="mapsKey" android:value="${MAPS_API_KEY}" />
   </application>
 </manifest>
