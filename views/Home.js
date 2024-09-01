@@ -12,10 +12,9 @@ export default function Home(props) {
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
   const [distance, setDistance] = useState(null);
-  const [duration, setDuration] = useState(null);
   const [price, setPrice] = useState(null);
   const [address, setAddress] = useState(null);
-  const PRECO_POR_KM = 3  // preço de R$5 por km
+  const PRECO_POR_KM = 3  // preço de R$3 por km
 
   useEffect(() => {
     (async () => {
@@ -63,7 +62,6 @@ export default function Home(props) {
             precision={"high"}
             onReady={result => {
               setDistance(result.distance)
-              setDuration(result.duration)
               setPrice(result.distance*PRECO_POR_KM)
               // console.log(result)  // mostrar o array de coordenadas
               mapEl.current.fitToCoordinates(
@@ -106,10 +104,16 @@ export default function Home(props) {
         />
         {distance &&
           <View style={styles.distance}>
-            <Text style={styles.distance__text}>Ditância: {distance.toFixed(2).replace('.', ',')}km</Text>
-            <TouchableOpacity style={styles.price} onPress={() => props.navigation.navigate('Checkout', {
-              price: price.toFixed(2), address: address
-            })}>
+            <Text style={styles.distance__text}>Ditância:
+              {distance.toFixed(2).replace('.', ',')}km</Text>
+            <TouchableOpacity style={styles.price} onPress={() =>
+              props.navigation.navigate(
+                'Checkout',
+                {
+                  price: price.toFixed(2),
+                  address: address
+                }
+                )}>
               <View style={styles.price_view}>
                 <MaterialIcons name={"payment"} size={24} color="white" />
                 <Text style={styles.price__text}>
@@ -119,11 +123,6 @@ export default function Home(props) {
             </TouchableOpacity>
           </View>
         }
-
-
-        {/*{duration &&*/}
-        {/*  <Text>Duração: {duration}m</Text>*/}
-        {/*}*/}
       </View>
     </View>
   );
