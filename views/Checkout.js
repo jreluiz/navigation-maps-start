@@ -5,6 +5,7 @@ import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 export default function Checkout(props) {
 
   useEffect(() => {
+    console.log('URL_ROOT: ', URL_ROOT);
     async function sendServer(){
       console.log('Efetuando requisição...')
       await fetch(URL_ROOT, {
